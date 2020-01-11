@@ -2,29 +2,18 @@ import {
   IonContent,
   IonHeader,
   IonPage,
-  IonTitle,
-  IonToolbar,
-  IonList,
-  IonItem,
   IonCheckbox,
-  IonLabel,
-  IonNote,
-  IonBadge,
-  IonFab,
-  IonFabButton,
-  IonIcon,
   IonButton,
   IonCard,
   IonCardHeader,
-  IonCardTitle,
   IonCardContent,
   IonCardSubtitle,
-  IonBackButton
 } from "@ionic/react";
 import React, { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import { defineCustomElements } from "@ionic/pwa-elements/loader";
 import "../style/home.css";
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 // Call the element loader after the platform has been bootstrapped
 defineCustomElements(window);
@@ -46,14 +35,28 @@ const form = [
 
 const Home: React.FC<RouteComponentProps> = props => {
 
+//     constructor(private nativeStorage: NativeStorage) { }
+
+// this.nativeStorage.setItem('myitem', {property: 'value', anotherProperty: 'anotherValue'})
+//   .then(
+//     () => console.log('Stored item!'),
+//     error => console.error('Error storing item', error)
+//   );
+
+// this.nativeStorage.getItem('myitem')
+//   .then(
+//     data => console.log(data),
+//     error => console.error(error)
+//   );
+
   return (
     <IonPage>
-      <IonHeader>Gym Tracker</IonHeader>
+      <IonHeader>On Track</IonHeader>
       <IonContent>
         {form.map(({val, isChecked, id})=> (
           <IonCard key={id}>
           <IonCardHeader>
-            <IonButton onClick={() => props.history.push(`/weeks/${id}`)}>{val}</IonButton>
+            <IonButton onClick={() => props.history.push(`/weeks/${id}`)} class="weekBtn" color="secondary">{val}</IonButton>
           </IonCardHeader>
           <IonCardContent>
             <IonCardSubtitle>
@@ -81,3 +84,8 @@ const Home: React.FC<RouteComponentProps> = props => {
 export default Home;
 
 
+// class name {
+//     constructor(parameters) {
+        
+//     }
+// }

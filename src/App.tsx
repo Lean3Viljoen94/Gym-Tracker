@@ -37,6 +37,7 @@ const App: React.FC = () => {
           <Redirect exact from="/" to="/home" />
         </IonRouterOutlet>
       </IonReactRouter>
+      <link href="https://fonts.googleapis.com/css?family=Libre+Franklin|Lobster&display=swap" rel="stylesheet"></link>
     </IonApp>
   );
 }

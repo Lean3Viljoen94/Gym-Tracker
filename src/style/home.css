@@ -1,6 +1,23 @@
 .header-md{
     font-size: xx-large;
+    text-align: center;
+    font-family: 'Lobster', cursive;
+    padding: 25px;
 }
 .sc-ion-card-md-h{
     text-align: center;
+}
+.ion-header{
+    display: block;
+    position: relative;
+    -ms-flex-order: -1;
+    order: -1;
+    width: 100%;
+    z-index: 10;
+}
+.card-content-md{
+    font-family: 'Libre Franklin', sans-serif;
+}
+.ion-page{
+    background-color: deeppink;
 }

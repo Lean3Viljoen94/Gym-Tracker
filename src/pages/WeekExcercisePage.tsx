@@ -8,11 +8,13 @@ import {
     IonTitle,
     IonToolbar,
     IonCardContent,
-    withIonLifeCycle
+    withIonLifeCycle,
+    IonCheckbox
 } from '@ionic/react';
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Week, TRANING_WEEKS } from '../Model';
+import "../style/excercisePages.css";
 
 interface WeekExcercisePageState {
     exersizeForWeek: Week;
@@ -33,11 +35,9 @@ class WeekExcercisePage extends React.Component <WeekExcercisePageProps, WeekExc
 
   ionViewDidEnter() {
       console.log('ionViewDidLeave event fired')
-      console.log(this.props.match.params);
       const week = TRANING_WEEKS.find(trainingWeek => {
           return trainingWeek.keyName === this.props.match.params.weekUrlId
       });
-      console.log(week);
       this.setState({ 
         exersizeForWeek: week
       });
@@ -61,7 +61,7 @@ class WeekExcercisePage extends React.Component <WeekExcercisePageProps, WeekExc
                     <ul>
                         {
                             this.state.exersizeForWeek.resistance.map(resistanceTraining => {
-                                return (<IonButton expand="full" key={resistanceTraining.name}
+                                return (<IonButton expand="full" color="secondary" class="weekBtn" key={resistanceTraining.name}
                                  onClick={() => this.props.history.push(this.props.match.url + '/' + resistanceTraining.keyName)}> { resistanceTraining.name } </IonButton>);
                             })
                         }
