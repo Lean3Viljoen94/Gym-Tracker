@@ -9,11 +9,10 @@ import {
     IonToolbar,
     IonCardContent,
     withIonLifeCycle,
-    IonCard,
-    IonCardHeader,
     IonList,
     IonItem, 
-    IonLabel
+    IonLabel,
+    IonCheckbox
   } from '@ionic/react';
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
@@ -47,7 +46,7 @@ class DailyExcercisePage extends React.Component<DailyExcercisePageProps, DailyE
         super(props);
         this.state = {
             week: null,
-            resistance: null
+            resistance: null,
         }
     }
 
@@ -62,10 +61,19 @@ class DailyExcercisePage extends React.Component<DailyExcercisePageProps, DailyE
         });
         this.setState({ 
             week: week,
-            resistance: resistanceExcersise
+            resistance: resistanceExcersise,
         });
     }
 
+    // onClick: function(e) {
+    //     this.setState({location: !e.target.checked});
+    // }
+
+    // getInitialState: function() {
+    //     return {
+    //         completed: true
+    //     };
+    // };    
 
     render() {
         return(
@@ -82,7 +90,7 @@ class DailyExcercisePage extends React.Component<DailyExcercisePageProps, DailyE
                 <IonCardContent>
                 <IonList>
                 <IonItem>
-                    {/* <IonHeader>{this.state.resistance.activities}</IonHeader> */}
+                <IonCheckbox/>
                     <IonLabel>
                     {this.state.resistance && (this.state.resistance.activities.activation.map((activationEx)=>{
                     return <p>{activationEx}</p>
@@ -90,6 +98,7 @@ class DailyExcercisePage extends React.Component<DailyExcercisePageProps, DailyE
                     </IonLabel>
                 </IonItem>
                 <IonItem>
+                <IonCheckbox/>
                     <IonLabel>
                     {this.state.resistance && (this.state.resistance.activities.pyramid.map((pyramidEx)=>{
                     return <p>{pyramidEx}</p>
@@ -97,6 +106,7 @@ class DailyExcercisePage extends React.Component<DailyExcercisePageProps, DailyE
                     </IonLabel>
                 </IonItem>
                 <IonItem>
+                <IonCheckbox/>
                     <IonLabel>
                     {this.state.resistance && (this.state.resistance.activities.supersets.map((suprsetEx)=>{
                     return <p>{suprsetEx}</p>
@@ -104,6 +114,7 @@ class DailyExcercisePage extends React.Component<DailyExcercisePageProps, DailyE
                     </IonLabel>
                 </IonItem>
                 </IonList>
+                <IonButton expand="full" color="secondary" class="weekBtn" href="/home">Workout Done!</IonButton>
                 </IonCardContent>
             </IonContent>
         </IonPage>

@@ -21,3 +21,9 @@
 .ion-page{
     background-color: deeppink;
 }
+.traningForWeekContainer {
+    display: inline-block;
+}
+.checkBoxContainer {
+    text-align: left
+}

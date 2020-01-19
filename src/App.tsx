@@ -1,10 +1,12 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet } from '@ionic/react';
+import { IonApp, IonRouterOutlet, withIonLifeCycle } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
 import WeekExcercisePage from './pages/WeekExcercisePage';
 import DailyExcercisePage from './pages/DailyExcercisePage';
+import { Week, TRANING_WEEKS } from './Model';
+
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -26,20 +28,45 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-const App: React.FC = () => {
-  return (
-    <IonApp>
-      <IonReactRouter>
-        <IonRouterOutlet>
-          <Route path="/home" component={Home} />
-          <Route path="/weeks/:weekUrlId" component={WeekExcercisePage} />
-          <Route path="/weeks/:weekUrlId/:resistanceUrlId" component={DailyExcercisePage} />
-          <Redirect exact from="/" to="/home" />
-        </IonRouterOutlet>
-      </IonReactRouter>
-      <link href="https://fonts.googleapis.com/css?family=Libre+Franklin|Lobster&display=swap" rel="stylesheet"></link>
-    </IonApp>
-  );
+interface AppPageState {
+    weeks: Array<Week>; 
 }
 
-export default App;
+interface AppPageProps {
+    
+}
+
+class App extends React.Component <AppPageProps, AppPageState> {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            weeks: []
+        }
+    }
+
+    componentDidMount() {
+        console.log('App ionicViewDidEnter');
+        this.setState({
+            weeks: TRANING_WEEKS
+        });
+    }
+// Props are passed down from main App compoent to all child components to maintain coherence between all pages. 
+    render() {
+        return (
+        <IonApp>
+            <IonReactRouter>
+                <IonRouterOutlet>
+                    <Route path="/home" render={(props) => <Home {...props} {...this.state} />} />
+                    <Route path="/weeks/:weekUrlId" render={(props) => <WeekExcercisePage {...props} {...this.state} />}/>
+                    <Route path="/weeks/:weekUrlId/:resistanceUrlId" render={(props) => <DailyExcercisePage {...props} {...this.state} />}/>
+                    <Redirect exact from="/" to="/home" />
+                </IonRouterOutlet>
+            </IonReactRouter>
+            <link href="https://fonts.googleapis.com/css?family=Libre+Franklin|Lobster&display=swap" rel="stylesheet"></link>
+        </IonApp>
+        );
+    }
+}
+
+export default withIonLifeCycle(App);
