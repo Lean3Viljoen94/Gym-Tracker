@@ -1,3 +1,7 @@
 .weekBtn{
     margin-bottom: 40px;
 }
+
+.div, .toolbar-container, .toolbar-background, .toolbar-content, .in-toolbar{
+    background-color: deeppink;
+}
